@@ -264,3 +264,25 @@
   const year = byId("year");
   if (year) year.textContent = new Date().getFullYear();
 })();
+
+  // Warm the section pages in the background to avoid another request on each click.
+  const pagePaths = ["index.html", "about.html", "projects.html", "experience.html", "skills.html", "contact.html"];
+  const prefetchedPages = new Set();
+  const prefetchPage = (path) => {
+    if (!path || prefetchedPages.has(path) || !pagePaths.includes(path)) return;
+    prefetchedPages.add(path);
+    const hint = document.createElement("link");
+    hint.rel = "prefetch";
+    hint.href = path;
+    document.head.appendChild(hint);
+  };
+  document.querySelectorAll(".sidebar-link[href]").forEach((link) => {
+    const path = link.getAttribute("href");
+    link.addEventListener("pointerenter", () => prefetchPage(path), { once: true });
+    link.addEventListener("focus", () => prefetchPage(path), { once: true });
+  });
+  if (!navigator.connection?.saveData) {
+    const warmPages = () => pagePaths.forEach(prefetchPage);
+    if ("requestIdleCallback" in window) window.requestIdleCallback(warmPages, { timeout: 1800 });
+    else window.setTimeout(warmPages, 900);
+  }
