@@ -282,3 +282,8 @@ body{background:#f3f6fa;color:#18324d}
 
 /* Keep page changes smooth without shifting content. */
 @keyframes portfolio-page-in{from{opacity:.82}to{opacity:1}}
+
+
+/* Keep page navigation immediate and free of vertical movement. */
+@view-transition{navigation:none}
+::view-transition-old(root),::view-transition-new(root){animation:none!important}
