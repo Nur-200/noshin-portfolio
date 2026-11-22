@@ -287,3 +287,6 @@ body{background:#f3f6fa;color:#18324d}
 /* Keep page navigation immediate and free of vertical movement. */
 @view-transition{navigation:none}
 ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+
+/* The project editing reminder is no longer shown on the public site. */
+.edit-hint{display:none!important}
