@@ -269,3 +269,12 @@ body{background:#f3f6fa;color:#18324d}
 .profile-photo-dialog::backdrop{background:#102a43b3;backdrop-filter:blur(3px)}
 .profile-photo-dialog img{display:block;max-width:min(86vw,680px);max-height:82vh;object-fit:contain}
 .photo-dialog-close{position:absolute;top:15px;right:15px;width:34px;height:34px;border:1px solid #d9e3ed;border-radius:50%;background:#fff;color:#18324d;font:24px/1 var(--sans);cursor:pointer}
+
+
+/* Subtle cross-page motion; content stays readable and navigation remains separate. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:portfolio-page-out 120ms ease both}
+::view-transition-new(root){animation:portfolio-page-in 180ms ease both}
+@keyframes portfolio-page-out{to{opacity:.82}}
+@keyframes portfolio-page-in{from{opacity:.82;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation-duration:.01ms}}
