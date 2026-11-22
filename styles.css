@@ -278,3 +278,7 @@ body{background:#f3f6fa;color:#18324d}
 @keyframes portfolio-page-out{to{opacity:.82}}
 @keyframes portfolio-page-in{from{opacity:.82;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation-duration:.01ms}}
+
+
+/* Keep page changes smooth without shifting content. */
+@keyframes portfolio-page-in{from{opacity:.82}to{opacity:1}}
